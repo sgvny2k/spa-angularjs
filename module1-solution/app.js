@@ -14,7 +14,7 @@ function LunchCheckController($scope) {
     var items = [];
     list.forEach(function(item) {
       var trimmedItem = item.trim();
-      console.log(item, trimmedItem.length);
+      // console.log(item, trimmedItem.length);
       if (trimmedItem.length > 0) items.push(item);
     });
     return items;
@@ -29,9 +29,16 @@ function LunchCheckController($scope) {
 
     var items = $scope.lunchMenu.split(",");
     items = filterEmptyItems(items);
-    console.log(items);
-    $scope.message = (items.length > 3) ? "Too much!" : "Enjoy!";
-    $scope.msgColor = "Green";
+    // console.log(items);
+
+    // check if only commas and spaces are entered
+    if (items.length === 0) {
+      $scope.message = "No item found";
+      $scope.msgColor = "Red";
+    } else {
+      $scope.message = (items.length > 3) ? "Too much!" : "Enjoy!";
+      $scope.msgColor = "Green";
+    }
   };
 
 
