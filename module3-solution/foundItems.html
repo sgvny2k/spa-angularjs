@@ -1,5 +1,6 @@
+<div class="loader" ng-show="searchState === 1"></div>
 <div class="found-items">
-  <span ng-if="items.length === 0 && searched" class="alert alert-info">Nothing found</span>
+  <span ng-if="items.length === 0 && searchState === 2" class="alert alert-info">Nothing found</span>
   <ol>
     <li ng-repeat="item in items">
       {{ item.short_name }}, {{ item.name }} <br>

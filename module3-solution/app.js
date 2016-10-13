@@ -13,7 +13,7 @@ function FoundItemsDirective() {
     scope: {
       // bind props (1-way)
       items: '<',
-      searched: '<',
+      searchState: '<',
       // bind method
       onRemove: '&'
     }
@@ -26,7 +26,7 @@ NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService) {
   var menu = this;
   menu.found = [];
-  menu.searched = false;
+  menu.searchState = 0;
 
   /**
    * Handle click event for "Narrow It Down For Me!" button
@@ -36,10 +36,10 @@ function NarrowItDownController(MenuSearchService) {
   menu.search = function() {
     // clear the existing menu first
     menu.found = [];
-    menu.searched = false;
+    menu.searchState = 1;
 
     if (!menu.searchTerm) {
-      menu.searched = true;
+      menu.searchState = 2;
       return;
     }
 
@@ -48,10 +48,10 @@ function NarrowItDownController(MenuSearchService) {
     promise.then(function(foundItems) {
       // save the filtered items to controller's property
       menu.found = foundItems;
-      menu.searched = true;
+      menu.searchState = 2;
     }).catch(function (error) {
       console.error("Error:", error);
-      menu.searched = true;
+      menu.searchState = 2;
     });
   };
 
