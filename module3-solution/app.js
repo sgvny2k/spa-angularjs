@@ -34,11 +34,15 @@ function NarrowItDownController(MenuSearchService) {
    * that matched search term in their descriptions.
    */
   menu.search = function() {
-    if (!menu.searchTerm) return;
-
     // clear the existing menu first
     menu.found = [];
     menu.searched = false;
+
+    if (!menu.searchTerm) {
+      menu.searched = true;
+      return;
+    }
+
     // get new items with a promise
     var promise = MenuSearchService.getMatchedMenuItems(menu.searchTerm);
     promise.then(function(foundItems) {
