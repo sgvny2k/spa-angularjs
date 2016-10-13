@@ -61,8 +61,8 @@ function NarrowItDownController(MenuSearchService) {
   };
 }
 
-MenuSearchService.$inject = ['$http', 'ApiBasePath']
-function MenuSearchService($http, ApiBasePath) {
+MenuSearchService.$inject = ['$http', '$filter', 'ApiBasePath']
+function MenuSearchService($http, $filter, ApiBasePath) {
   var service = this;
 
   /**
@@ -74,16 +74,7 @@ function MenuSearchService($http, ApiBasePath) {
       url: (ApiBasePath + "/menu_items.json")
     }).then(function(response) {
       var menuItems = response.data && response.data.menu_items;
-      // loop through the menu items and check for appearance of search term in descriptions
-      var foundItems = [];
-      menuItems.forEach(function(item) {
-        if (item.description && item.description.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
-          // add the item to foundItems array
-          foundItems.push(item);
-        }
-      });
-
-      return foundItems;
+      return $filter('filter')(menuItems, {'description': searchTerm});
     }).catch(function (error) {
       console.error("Error:", error);
     });

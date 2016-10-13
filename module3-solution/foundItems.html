@@ -2,7 +2,8 @@
   <span ng-if="items.length === 0 && searched" class="alert alert-info">Nothing found</span>
   <ol>
     <li ng-repeat="item in items">
-      {{ item.short_name }}, {{ item.name }}, {{item.description}}
+      {{ item.short_name }}, {{ item.name }} <br>
+      {{item.description}} <br>
       <button ng-click="onRemove({index: $index});" class="btn btn-sm btn-warning">Don't want this one!</button>
     </li>
   </ol>
