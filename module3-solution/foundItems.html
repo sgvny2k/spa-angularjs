@@ -1,5 +1,5 @@
 <div class="found-items">
-  <span ng-if="list.found.length === 0 && list.searched" class="alert alert-info">No menu item contains search term.</span>
+  <span ng-if="list.found.length === 0 && list.searched" class="alert alert-info">No menu item containing search term.</span>
   <ol>
     <li ng-repeat="item in list.found">
       {{ item.short_name }}, {{ item.name }}, {{item.description}}
