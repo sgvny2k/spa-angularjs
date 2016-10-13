@@ -12,21 +12,14 @@ function FoundItemsDirective() {
     templateUrl: 'foundItems.html',
     scope: {
       // bind props (1-way)
-      found: '<',
+      items: '<',
       searched: '<',
       // bind method
       onRemove: '&'
-    },
-    controller: FoundItemDirectiveController,
-    controllerAs: 'list',
-    bindToController: true
+    }
   };
 
   return ddo;
-}
-
-function FoundItemDirectiveController() {
-  var list = this;
 }
 
 NarrowItDownController.$inject = ['MenuSearchService'];
