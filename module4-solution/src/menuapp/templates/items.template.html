@@ -1,0 +1,11 @@
+<div>
+  <a ui-sref="home">Home</a> / <a ui-sref="categories">Categories</a> / Menu items
+</div>
+
+<h3>Menu items in selected category</h3>
+<ol class="menu-items">
+  <li ng-repeat="item in $ctrl.items">
+    <p class="menu-item-main">{{ item.name }} - <span class="label label-success">{{ item.price_large | currency}}</span></p>
+    <p class="menu-item-desc">{{ item.description }}</p>
+  </li>
+</ol>
